@@ -1,0 +1,24 @@
+name: Multi Environment Deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-dev:
+    runs-on: self-hosted
+    environment: dev
+
+    steps:
+      - name: Deploy Dev
+        shell: cmd
+        run: echo Deploying to DEV
+
+  deploy-qa:
+    needs: deploy-dev
+    runs-on: self-hosted
+    environment: qa
+
+    steps:
+      - name: Deploy QA
+        shell: cmd
+        run: echo Deploying to QA
